@@ -1,0 +1,101 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node {
+public:
+string d;
+Node* next;
+
+Node(string nd) {
+this->d = nd;
+this->next = NULL;
+}
+};
+
+class myStack {
+Node* head;
+
+public:
+myStack() {
+this->head = NULL;
+}
+
+bool isempty() {
+return (head == NULL);
+}
+
+void push(string nd) {
+Node* temp = new Node(nd);
+if (!temp) {
+cout << "Overflow";
+return;
+}
+temp->next = head;
+head = temp;
+}
+
+void pop() {
+if (this->isempty())
+cout << "Underflow";
+else {
+Node* flag = head;
+head = head->next;
+delete flag;
+}
+}
+
+string peek() {
+if (!isempty())
+return head->d;
+else {
+cout << "Stack empty" << endl;
+return "";
+}
+}
+};
+
+int main() {
+ myStack s;
+ s.push("4");
+ s.push("6");
+ s.push("7");
+ s.push("8");
+ s.push("1");
+ s.pop();
+
+string a = s.peek();
+cout << "Top element is: " << a << endl;
+
+string str[5];
+   
+
+    
+for(int i=0; i<6; i++)
+ {
+ cin>>str[i];
+  }
+    
+ myStack r;
+ for (int i = 0; i < 6; i++) {
+  r.push(str[i]);
+}
+
+   
+bool temp = true;
+ for (int i = 0; i < 6; i++) {
+if (str[i] != r.peek()) {
+temp = false;
+break;
+  }
+r.pop();
+ }
+
+ if (temp) {
+ cout << "Palindrome" << endl;
+ } 
+ else {
+  cout << "Not Palindrome" << endl;
+    }
+
+return 0;
+}
